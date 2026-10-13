@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Captura de fotos de hallazgos vía intent nativo de cámara. -->
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <!-- Sync con Supabase y envío de correo SMTP. -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+</manifest>

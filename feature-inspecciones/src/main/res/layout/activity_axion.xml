@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F5F5F5">
+
+    <!-- CABECERA FIJA -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#37474F"
+        android:padding="12dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CHECKLIST DE CAMIONES — AXION"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:gravity="center"/>
+
+    </LinearLayout>
+
+    <!-- LISTA DE ÍTEMS -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_items_axion"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="8dp"
+        android:clipToPadding="false"/>
+
+    <!-- ZONA INFERIOR: nombre chofer + botón -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#ECEFF1"
+        android:padding="12dp"
+        android:paddingBottom="24dp">
+
+        <Button
+            android:id="@+id/btn_estado_general_axion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:backgroundTint="#607D8B"
+            android:text="+ Estado general de la unidad"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"/>
+
+        <Button
+            android:id="@+id/btn_finalizar_axion"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="FINALIZAR Y ENVIAR"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:backgroundTint="#37474F"
+            android:textColor="#FFFFFF"/>
+
+    </LinearLayout>
+
+</LinearLayout>

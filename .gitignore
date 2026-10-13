@@ -1,0 +1,17 @@
+*.iml
+.gradle/
+/local.properties
+.idea/
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+**/build/
+
+# SEC-006 (docs/security/AUDITORIA-2026-09-19.md): keystore de firma de release real -- nunca
+# versionar la clave privada ni las contraseñas.
+keystore/*.jks
+keystore/*.keystore
+keystore/keystore.properties

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Seleccionar Empresa"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:layout_marginBottom="16dp"/>
+
+    <Spinner
+        android:id="@+id/spinner_empresas"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:spinnerMode="dropdown"
+        android:layout_marginBottom="16dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="¿No está en la lista? Agregá una nueva:"
+        android:textColor="@color/black"
+        android:textSize="14sp" />
+
+    <EditText
+        android:id="@+id/et_nueva_empresa"
+        android:layout_width="match_parent"
+        android:layout_height="59dp"
+        android:layout_marginBottom="12dp"
+        android:hint="Nombre de la nueva empresa"
+        android:importantForAutofill="no"
+        android:inputType="textCapCharacters" />
+
+    <Button
+        android:id="@+id/btn_agregar_empresa"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginBottom="24dp"
+        android:backgroundTint="#37474F"
+        android:text="Agregar Cliente"
+        android:textColor="@color/black" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_cancelar"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="101dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#78909C"
+            android:text="Cancelar"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/btn_aceptar"
+            android:backgroundTint="#37474F"
+            android:textColor="#FFFFFF"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Iniciar Inspección"
+            android:textStyle="normal" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@android:color/white">
+
+    <!-- Título -->
+    <TextView
+        android:id="@+id/tv_titulo_obs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Observaciones"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="#1565C0"
+        android:layout_marginBottom="12dp"/>
+
+    <!-- Lista de sugerencias -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tocá una sugerencia para agregarla:"
+        android:textSize="12sp"
+        android:textColor="#757575"
+        android:layout_marginBottom="4dp"/>
+
+    <ListView
+        android:id="@+id/lv_sugerencias"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:divider="#E0E0E0"
+        android:dividerHeight="1dp"
+        android:background="#F5F5F5"
+        android:layout_marginBottom="12dp"/>
+
+    <!-- Campo libre -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Texto final de la observación:"
+        android:textSize="12sp"
+        android:textColor="#757575"
+        android:layout_marginBottom="4dp"/>
+
+    <EditText
+        android:id="@+id/et_observacion_libre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Escribí o elegí de la lista de arriba..."
+        android:inputType="textMultiLine|textCapSentences"
+        android:minLines="3"
+        android:maxLines="5"
+        android:gravity="top"
+        android:background="@android:color/white"
+        android:padding="8dp"
+        android:layout_marginBottom="8dp"/>
+
+    <!-- Checkbox guardar nueva -->
+    <CheckBox
+        android:id="@+id/cb_guardar_nueva"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Guardar esta observación para usarla en el futuro"
+        android:textSize="12sp"
+        android:visibility="gone"
+        android:layout_marginBottom="12dp"/>
+
+    <!-- Botones -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_cancelar_obs"
+            android:backgroundTint="#78909C"
+            android:textColor="#FFFFFF"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Cancelar"
+            android:layout_marginEnd="8dp"/>
+
+        <Button
+            android:id="@+id/btn_guardar_obs"
+            android:backgroundTint="#37474F"
+            android:textColor="#FFFFFF"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Guardar"/>
+
+    </LinearLayout>
+
+</LinearLayout>

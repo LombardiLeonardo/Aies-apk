@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:context=".ui.InspeccionesMenuActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:id="@+id/tv_titulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sistema de Controles"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="30dp"/>
+
+        <Button
+            android:id="@+id/btn_livianos"
+            android:backgroundTint="#37474F"
+            android:textColor="#FFFFFF"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:text="INSPECCIÓN LIVIANOS\n(FOB - CARGA)"
+            android:textStyle="bold"
+            android:layout_marginBottom="16dp"/>
+
+        <Button
+            android:id="@+id/btn_pesados"
+            android:backgroundTint="#37474F"
+            android:textColor="#FFFFFF"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:text="INSPECCIÓN PESADOS\n(SPOT CHECK)"
+            android:textStyle="bold"
+            android:layout_marginBottom="16dp"/>
+
+        <Button
+            android:id="@+id/btn_coque"
+            android:backgroundTint="#37474F"
+            android:textColor="#FFFFFF"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:text="INSPECCIÓN COQUE"
+            android:textStyle="bold"
+            android:layout_marginBottom="16dp"/>
+
+        <Button
+            android:id="@+id/btn_quimicos"
+            android:backgroundTint="#37474F"
+            android:textColor="#FFFFFF"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:text="INSPECCIÓN QUÍMICOS TOP"
+            android:textStyle="bold"
+            android:layout_marginBottom="16dp"/>
+
+        <Button
+            android:id="@+id/btn_enganche"
+            android:backgroundTint="#37474F"
+            android:textColor="#FFFFFF"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:text="VERIFICACIÓN DE ENGANCHE"
+            android:textStyle="bold"
+            android:layout_marginBottom="16dp"/>
+
+        <Button
+            android:id="@+id/btn_axion"
+            android:backgroundTint="#37474F"
+            android:textColor="#FFFFFF"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:text="CHECKLIST AXION"
+            android:textStyle="bold"
+            android:layout_marginBottom="16dp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="20dp"/>
+
+        <Button
+            android:id="@+id/btn_historial"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="📊 Historial de controles / Exportar para facturación"
+            android:textColor="#37474F"
+            android:textAllCaps="false"/>
+
+    </LinearLayout>
+</ScrollView>

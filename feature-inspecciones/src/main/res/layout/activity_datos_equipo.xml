@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="DATOS DEL TRACTOR"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:layout_marginBottom="12dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="12dp">
+
+            <Spinner
+                android:id="@+id/spinner_marca_tractor"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/btn_nueva_marca_tractor"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#37474F"
+                android:text="+ Marca"
+                android:textColor="#0D0B0B" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/et_modelo_tractor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Modelo de Tractor"
+            android:inputType="textCapWords"
+            android:layout_marginBottom="12dp"/>
+
+        <EditText
+            android:id="@+id/et_patente_tractor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Patente / Dominio"
+            android:inputType="textCapCharacters"
+            android:layout_marginBottom="12dp"/>
+
+        <EditText
+            android:id="@+id/et_anio_tractor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Año de Fabricación"
+            android:inputType="number"
+            android:maxLength="4"
+            android:layout_marginBottom="12dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tipo de Combustible:"
+            android:textSize="14sp"
+            android:layout_marginBottom="4dp"/>
+
+        <RadioGroup
+            android:id="@+id/rg_combustible"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="24dp">
+            <RadioButton
+                android:id="@+id/rb_diesel"
+                android:textColor="#E65100"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="DIESEL"
+                android:checked="true"
+                android:layout_marginRight="24dp"/>
+            <RadioButton
+                android:id="@+id/rb_gnc"
+                android:textColor="#E65100"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="GNC"/>
+        </RadioGroup>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            android:layout_marginBottom="24dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="DATOS DEL SEMIRREMOLQUE"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:layout_marginBottom="12dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="12dp">
+
+            <Spinner
+                android:id="@+id/spinner_marca_semi"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/btn_nueva_marca_semi"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#37474F"
+                android:text="+ Marca"
+                android:textColor="#0D0B0B" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/et_modelo_semi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Modelo de Semirremolque"
+            android:inputType="textCapWords"
+            android:layout_marginBottom="12dp"/>
+
+        <EditText
+            android:id="@+id/et_patente_semi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Patente / Dominio"
+            android:inputType="textCapCharacters"
+            android:layout_marginBottom="12dp"/>
+
+        <EditText
+            android:id="@+id/et_anio_semi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Año de Fabricación"
+            android:inputType="number"
+            android:maxLength="4"
+            android:layout_marginBottom="24dp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CONTROLES A REALIZAR (Selección Múltiple)"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:layout_marginBottom="12dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="24dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+                <CheckBox android:id="@+id/cb_livianos" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Shell Livianos" android:buttonTint="#E65100"/>
+                <CheckBox android:id="@+id/cb_pesados" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Pesados" android:buttonTint="#E65100"/>
+                <CheckBox android:id="@+id/cb_coque" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Coque" android:buttonTint="#E65100"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+                <CheckBox android:id="@+id/cb_quimicos" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Químicos" android:buttonTint="#E65100"/>
+
+                <CheckBox
+                    android:id="@+id/cb_axion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="#E65100"
+                    android:text="Axion Livianos" />
+
+                <CheckBox android:id="@+id/cb_enganche" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Enganche" android:buttonTint="#E65100"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_continuar_inspeccion"
+            android:backgroundTint="#37474F"
+            android:textColor="#FFFFFF"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="COMENZAR CONTROLES"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:layout_marginBottom="16dp"/>
+
+    </LinearLayout>
+</ScrollView>

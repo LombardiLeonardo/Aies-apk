@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Necesario para MediaStore.Files en API 26-28; API 29+ (Downloads collection) no la requiere. -->
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="28" />
+
+    <application>
+        <activity
+            android:name=".ui.InspeccionesMenuActivity"
+            android:theme="@style/Theme.FeatureInspecciones"
+            android:exported="false" />
+        <activity
+            android:name=".ui.DatosEquipoActivity"
+            android:theme="@style/Theme.FeatureInspecciones"
+            android:exported="false" />
+        <activity
+            android:name=".ui.InspeccionActivity"
+            android:theme="@style/Theme.FeatureInspecciones"
+            android:exported="false" />
+        <activity
+            android:name=".ui.EngancheActivity"
+            android:theme="@style/Theme.FeatureInspecciones"
+            android:exported="false" />
+        <activity
+            android:name=".ui.AxionActivity"
+            android:theme="@style/Theme.FeatureInspecciones"
+            android:exported="false" />
+        <activity
+            android:name=".ui.HistorialActivity"
+            android:theme="@style/Theme.FeatureInspecciones"
+            android:exported="false" />
+    </application>
+
+</manifest>

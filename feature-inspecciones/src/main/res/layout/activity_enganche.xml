@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- TÍTULO -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:background="#37474F"
+            android:gravity="center"
+            android:padding="12dp"
+            android:text="VERIFICACIÓN SISTEMA DE ENGANCHE"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            tools:ignore="HardcodedText" />
+
+        <!-- ═══════════════════════════════════════════════════════ -->
+        <!-- PERNO DE ANCLAJE -->
+        <!-- ═══════════════════════════════════════════════════════ -->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:background="#37474F"
+            android:padding="8dp"
+            android:text="PERNO DE ANCLAJE"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            tools:ignore="HardcodedText" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="8dp">
+
+            <EditText
+                android:id="@+id/et_marca_perno"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Marca"
+                android:inputType="textCapCharacters"
+                android:layout_marginEnd="8dp"/>
+
+            <EditText
+                android:id="@+id/et_modelo_perno"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Modelo"
+                android:inputType="textCapCharacters"/>
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/et_obs_perno"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Observaciones (opcional)"
+            android:inputType="textMultiLine"
+            android:minLines="2"
+            android:layout_marginBottom="8dp"
+            tools:ignore="HardcodedText" />
+
+        <RadioGroup
+            android:id="@+id/rg_perno"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+            <RadioButton
+                android:id="@+id/rb_perno_apto"
+                android:textColor="#2E7D32"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="✔ APTO"
+                android:textStyle="bold"
+                android:checked="true"/>
+
+            <RadioButton
+                android:id="@+id/rb_perno_no_apto"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="✘ NO APTO"
+                android:textColor="#E65100"
+                android:textStyle="bold" />
+        </RadioGroup>
+
+        <View android:layout_width="match_parent" android:layout_height="1dp"
+            android:background="#BDBDBD" android:layout_marginBottom="16dp"/>
+
+        <!-- ═══════════════════════════════════════════════════════ -->
+        <!-- PLACA DE APOYO -->
+        <!-- ═══════════════════════════════════════════════════════ -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:background="#37474F"
+            android:padding="8dp"
+            android:text="PLACA DE APOYO"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tipo de fijación:"
+            android:textSize="13sp"
+            android:layout_marginBottom="4dp"/>
+
+        <RadioGroup
+            android:id="@+id/rg_fijacion_placa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="8dp">
+
+            <RadioButton
+                android:id="@+id/rb_abulonado"
+                android:textColor="#2E7D32"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Abulonado"
+                android:checked="true"/>
+
+            <RadioButton
+                android:id="@+id/rb_soldado"
+                android:textColor="#2E7D32"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Soldado"/>
+        </RadioGroup>
+
+        <EditText
+            android:id="@+id/et_obs_placa"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginBottom="8dp"
+            android:hint="Observaciones (opcional)"
+            android:inputType="textMultiLine"
+            android:minLines="2" />
+
+        <RadioGroup
+            android:id="@+id/rg_placa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+            <RadioButton
+                android:id="@+id/rb_placa_apta"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:checked="true"
+                android:text="✔ APTA"
+                android:textColor="#2E7D32"
+                android:textStyle="bold" />
+
+            <RadioButton
+                android:id="@+id/rb_placa_no_apta"
+                android:textColor="#E65100"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="✘ NO APTA"
+                android:textStyle="bold"/>
+        </RadioGroup>
+
+        <View android:layout_width="match_parent" android:layout_height="1dp"
+            android:background="#BDBDBD" android:layout_marginBottom="16dp"/>
+
+        <!-- ═══════════════════════════════════════════════════════ -->
+        <!-- BASE CORRUGADA -->
+        <!-- ═══════════════════════════════════════════════════════ -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:background="#37474F"
+            android:padding="8dp"
+            android:text="BASE CORRUGADA"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="8dp">
+
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/et_obs_base"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Observaciones (opcional)"
+            android:inputType="textMultiLine"
+            android:minLines="2"
+            android:layout_marginBottom="8dp"/>
+
+        <RadioGroup
+            android:id="@+id/rg_base"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+            <RadioButton
+                android:id="@+id/rb_base_apta"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:checked="true"
+                android:text="✔ APTA"
+                android:textColor="#2E7D32"
+                android:textStyle="bold" />
+
+            <RadioButton
+                android:id="@+id/rb_base_no_apta"
+                android:textColor="#E65100"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="✘ NO APTA"
+                android:textStyle="bold"/>
+        </RadioGroup>
+
+        <View android:layout_width="match_parent" android:layout_height="1dp"
+            android:background="#BDBDBD" android:layout_marginBottom="16dp"/>
+
+        <!-- ═══════════════════════════════════════════════════════ -->
+        <!-- PLATO -->
+        <!-- ═══════════════════════════════════════════════════════ -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:background="#37474F"
+            android:padding="8dp"
+            android:text="PLATO"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="8dp">
+
+            <EditText
+                android:id="@+id/et_marca_plato"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Marca"
+                android:inputType="textCapCharacters"
+                android:layout_marginEnd="8dp"/>
+
+            <EditText
+                android:id="@+id/et_modelo_plato"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Modelo"
+                android:inputType="textCapCharacters"/>
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/et_numero_plato"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Número de plato"
+            android:inputType="textCapCharacters"
+            android:layout_marginBottom="8dp"/>
+
+        <EditText
+            android:id="@+id/et_obs_plato"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Observaciones (opcional)"
+            android:inputType="textMultiLine"
+            android:minLines="2" android:layout_marginBottom="8dp"/>
+
+        <RadioGroup
+            android:id="@+id/rg_plato"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+            <RadioButton
+                android:id="@+id/rb_plato_apto"
+                android:textColor="#2E7D32"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="✔ APTO"
+                android:textStyle="bold"
+                android:checked="true"/>
+
+            <RadioButton
+                android:id="@+id/rb_plato_no_apto"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="✘ NO APTO"
+                android:textColor="#E65100"
+                android:textStyle="bold" />
+        </RadioGroup>
+
+        <View android:layout_width="match_parent" android:layout_height="1dp"
+            android:background="#BDBDBD" android:layout_marginBottom="16dp"/>
+
+        <!-- ═══════════════════════════════════════════════════════ -->
+        <!-- LIBERACIÓN FINAL -->
+        <!-- ═══════════════════════════════════════════════════════ -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="LIBERACIÓN FINAL DE LA UNIDAD"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:padding="8dp"
+            android:background="#37474F"
+            android:textColor="#FFFFFF"
+            android:layout_marginBottom="8dp"/>
+
+        <RadioGroup
+            android:id="@+id/rg_liberacion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="24dp">
+
+            <RadioButton
+                android:id="@+id/rb_liberacion_si"
+                android:textColor="#2E7D32"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="✔ SÍ"
+                android:textStyle="bold"
+                android:checked="true"/>
+
+            <RadioButton
+                android:id="@+id/rb_liberacion_no"
+                android:textColor="#E65100"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="✘ NO"
+                android:textStyle="bold"/>
+        </RadioGroup>
+
+        <!-- BOTÓN FINALIZAR -->
+        <Button
+            android:id="@+id/btn_finalizar_enganche"
+            android:backgroundTint="#37474F"
+            android:textColor="#FFFFFF"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:text="FINALIZAR Y ENVIAR"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:layout_marginBottom="16dp"/>
+
+    </LinearLayout>
+</ScrollView>

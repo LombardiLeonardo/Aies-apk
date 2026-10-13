@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Captura de fotos de infografía/LPT vía intent nativo de cámara (funcionalidad nueva, no existe en ningún módulo previo). -->
+    <uses-permission android:name="android.permission.CAMERA" />
+
+</manifest>
