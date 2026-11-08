@@ -63,6 +63,7 @@ import com.aies.coredata.dao.ItemDeSesion
 import com.aies.coredata.dao.ServicioDelDia
 import com.aies.feature.repuestos.RepuestosScreen
 import com.aies.feature.planillatapas.PlanillaTapasScreen
+import com.aies.feature.planillaatmosfera.PlanillaAtmosferaScreen
 import com.aies.coredata.entities.AuditorCatalogo
 import com.aies.coredata.entities.ClienteCatalogo
 import com.aies.coredata.entities.SesionServicio
@@ -207,6 +208,18 @@ private sealed class Paso {
         val marcaSemi: String,
         val anioSemi: Int,
         val modeloSemi: String,
+        val cantidadCisternas: Int
+    ) : Paso()
+
+    /** Servicio "planilla_atmosfera" (R 12-01): una sola pantalla, mismo patrón que PlanillaTapas. */
+    data class PlanillaAtmosfera(
+        val sesionId: Long,
+        val sesionItemId: Long,
+        val unidadId: Long,
+        val cliente: String,
+        val auditor: String,
+        val patenteTractor: String,
+        val patenteSemi: String,
         val cantidadCisternas: Int
     ) : Paso()
 
@@ -371,6 +384,7 @@ private object CatalogoServiciosSeed {
             TipoServicio("control_espesores", "Control de Espesores", "feature-controles-visuales"),
             TipoServicio("calibracion_unidad", "Calibración de Unidad", "feature-calibrado"),
             TipoServicio("repuestos_cisterna", "Cambio de Repuestos", "feature-repuestos"),
+            TipoServicio("planilla_atmosfera", "Planilla de Control de Atmósfera de Tanques Cisterna", "feature-planilla-atmosfera"),
             TipoServicio("insp_livianos", "Spotcheck Livianos", "feature-inspecciones"),
             TipoServicio("insp_pesados", "Inspección PESADOS", "feature-inspecciones"),
             TipoServicio("insp_coque", "Inspección COQUE", "feature-inspecciones"),
@@ -505,6 +519,18 @@ fun SesionScreen(modifier: Modifier = Modifier) {
                                     marcaSemi = sesion.marcaSemi,
                                     anioSemi = sesion.anioSemi,
                                     modeloSemi = sesion.modeloSemi,
+                                    cantidadCisternas = unidad.cantidadCisternas
+                                )
+                            )
+                            "planilla_atmosfera" -> navegarA(
+                                Paso.PlanillaAtmosfera(
+                                    sesionId = paso.sesionId,
+                                    sesionItemId = item.id,
+                                    unidadId = unidad.id,
+                                    cliente = sesion.cliente,
+                                    auditor = sesion.auditor,
+                                    patenteTractor = sesion.patenteTractor,
+                                    patenteSemi = sesion.patenteSemi,
                                     cantidadCisternas = unidad.cantidadCisternas
                                 )
                             )
@@ -681,6 +707,12 @@ fun SesionScreen(modifier: Modifier = Modifier) {
                 // onVolver ya cumple el rol de "salir de esta pantalla" en las 3 planillas (se
                 // llama tanto al tocar "← Volver" en el paso 0 como al terminar de generar el
                 // PDF) — a diferencia de Calibrado no hace falta un callback aparte.
+                is Paso.PlanillaAtmosfera -> PlanillaAtmosferaScreen(
+                    onVolver = { volver() }, sesionId = paso.sesionId, sesionItemId = paso.sesionItemId,
+                    unidadIdPrecargada = paso.unidadId, clientePrecargado = paso.cliente, auditorPrecargado = paso.auditor,
+                    patenteTractorPrecargado = paso.patenteTractor, patenteSemiPrecargado = paso.patenteSemi,
+                    cantidadCisternasPrecargada = paso.cantidadCisternas
+                )
                 is Paso.ControlVisual -> when (paso.tipoServicioCodigo) {
                     "control_visual_interna" -> ControlVisualInternaScreen(
                         onVolver = { volver() }, sesionId = paso.sesionId, sesionItemId = paso.sesionItemId,
@@ -1655,7 +1687,7 @@ private fun VisitaEnCursoPaso(
                             try {
                                 withContext(Dispatchers.IO) { db.sesionServicioDao().eliminarItem(id) }
                             } catch (e: Exception) {
-                                toast("No se pudo quitar el servicio (sin conexión). Probá de nuevo."); return@launch
+                                toast("No se pudo quitar el servicio. Probá de nuevo."); return@launch
                             }
                             recargar()
                         }

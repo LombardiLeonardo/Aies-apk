@@ -2,6 +2,7 @@ package com.aies.feature.inspecciones.ui
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -63,6 +64,12 @@ class EngancheActivity : AppCompatActivity() {
     private lateinit var rbPlatoApto: RadioButton
     private lateinit var rbPlatoNoApto: RadioButton
 
+    // ── Control de ejes (1 a 3, izquierdo/derecho cada uno) ───────
+    private class LadoEje(val rg: RadioGroup, val rbApto: RadioButton, val etObs: EditText)
+    private class EjeVistas(val contenedor: LinearLayout, val izq: LadoEje, val der: LadoEje)
+    private val ejes = mutableListOf<EjeVistas>()
+    private var cantidadEjes = 1
+
     // ── Liberación final ──────────────────────────────────────────
     private lateinit var rgLiberacion: RadioGroup
     private lateinit var rbLiberacionSi: RadioButton
@@ -78,6 +85,7 @@ class EngancheActivity : AppCompatActivity() {
         patenteSemi   = intent.getStringExtra("PATENTE_SEMI") ?: ""
 
         vincularComponentes()
+        construirControlEjes()
 
         findViewById<Button>(R.id.btn_finalizar_enganche).setOnClickListener {
             if (validar()) {
@@ -119,6 +127,87 @@ class EngancheActivity : AppCompatActivity() {
         rgLiberacion   = findViewById(R.id.rg_liberacion)
         rbLiberacionSi = findViewById(R.id.rb_liberacion_si)
         rbLiberacionNo = findViewById(R.id.rb_liberacion_no)
+    }
+
+    private fun construirControlEjes() {
+        val contenedorEjes = findViewById<LinearLayout>(R.id.ll_ejes)
+        val dp = resources.displayMetrics.density
+        fun px(v: Int) = (v * dp).toInt()
+
+        fun construirLado(titulo: String, padre: LinearLayout): LadoEje {
+            padre.addView(TextView(this).apply { text = titulo; textSize = 13f; setPadding(0, px(6), 0, px(2)) })
+            val rbApto = RadioButton(this).apply {
+                id = View.generateViewId(); text = "✔ APTO"; isChecked = true
+                setTextColor(android.graphics.Color.parseColor("#2E7D32"))
+            }
+            val rbNoApto = RadioButton(this).apply {
+                id = View.generateViewId(); text = "✘ NO APTO"
+                setTextColor(android.graphics.Color.parseColor("#E65100"))
+            }
+            val rg = RadioGroup(this).apply {
+                orientation = RadioGroup.HORIZONTAL
+                addView(rbApto, RadioGroup.LayoutParams(0, RadioGroup.LayoutParams.WRAP_CONTENT, 1f))
+                addView(rbNoApto, RadioGroup.LayoutParams(0, RadioGroup.LayoutParams.WRAP_CONTENT, 1f))
+            }
+            padre.addView(rg)
+            val etObs = EditText(this).apply {
+                hint = "Observaciones (opcional)"
+                inputType = android.text.InputType.TYPE_CLASS_TEXT or android.text.InputType.TYPE_TEXT_FLAG_MULTI_LINE
+                minLines = 2
+            }
+            padre.addView(etObs)
+            return LadoEje(rg, rbApto, etObs)
+        }
+
+        for (n in 1..3) {
+            val caja = LinearLayout(this).apply {
+                orientation = LinearLayout.VERTICAL
+                setPadding(0, 0, 0, px(8))
+            }
+            caja.addView(TextView(this).apply { text = "EJE $n"; textSize = 14f; setTypeface(typeface, android.graphics.Typeface.BOLD) })
+            val izq = construirLado("Lado izquierdo", caja)
+            val der = construirLado("Lado derecho", caja)
+            contenedorEjes.addView(caja)
+            ejes.add(EjeVistas(caja, izq, der))
+        }
+
+        val rgCantidad = findViewById<RadioGroup>(R.id.rg_cantidad_ejes)
+        fun aplicarCantidad() {
+            cantidadEjes = when (rgCantidad.checkedRadioButtonId) {
+                R.id.rb_ejes_2 -> 2
+                R.id.rb_ejes_3 -> 3
+                else -> 1
+            }
+            ejes.forEachIndexed { i, e -> e.contenedor.visibility = if (i < cantidadEjes) View.VISIBLE else View.GONE }
+        }
+        rgCantidad.setOnCheckedChangeListener { _, _ -> aplicarCantidad() }
+        aplicarCantidad()
+    }
+
+    private fun escribirHojaControlEjes(workbook: HSSFWorkbook) {
+        // Sin estilos a propósito: HSSFWorkbook.createCellStyle() rompe en Android (ver el
+        // comentario de HistorialExcelBuilder) -- solo valores de celda.
+        val hoja = workbook.createSheet("Control de ejes")
+        fun fila(i: Int, vararg valores: String) {
+            val row = hoja.createRow(i)
+            valores.forEachIndexed { c, v -> row.createCell(c).setCellValue(v) }
+        }
+        fila(0, "CONTROL DE EJES")
+        fila(1, "Fecha", fechaHoy)
+        fila(2, "Patente tractor", patenteTractor)
+        fila(3, "Patente semirremolque", patenteSemi)
+        fila(5, "Eje", "Lado", "Resultado", "Observaciones")
+        var r = 6
+        ejes.take(cantidadEjes).forEachIndexed { i, e ->
+            listOf("Izquierdo" to e.izq, "Derecho" to e.der).forEach { (nombre, lado) ->
+                val apto = lado.rg.checkedRadioButtonId == lado.rbApto.id
+                fila(r++, "${i + 1}", nombre, if (apto) "APTO" else "NO APTO", lado.etObs.text.toString().trim())
+            }
+        }
+        hoja.setColumnWidth(0, 12 * 256)
+        hoja.setColumnWidth(1, 16 * 256)
+        hoja.setColumnWidth(2, 16 * 256)
+        hoja.setColumnWidth(3, 60 * 256)
     }
 
     private fun validar(): Boolean {
@@ -202,6 +291,9 @@ class EngancheActivity : AppCompatActivity() {
                 escribir(47, 8, "☑")
 
 
+
+            // ── Control de ejes (hoja nueva en el mismo libro) ────
+            escribirHojaControlEjes(workbook)
 
             // ── Guardar Excel ─────────────────────────────────────
             val nombreExcel = "ENGANCHE_${patenteTractor}_${System.currentTimeMillis()}.xls"

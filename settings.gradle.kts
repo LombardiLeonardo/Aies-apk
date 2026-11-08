@@ -31,5 +31,6 @@ include(
     ":feature-calibrado",
     ":feature-repuestos",
     ":feature-planilla-tapas",
+    ":feature-planilla-atmosfera",
     ":feature-sesion"
 )

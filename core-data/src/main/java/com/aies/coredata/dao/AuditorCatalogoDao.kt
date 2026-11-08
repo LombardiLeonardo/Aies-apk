@@ -21,12 +21,12 @@ class AuditorCatalogoDao internal constructor(
 
     suspend fun getAll(): List<AuditorCatalogo> {
         return try {
-            val remotos = remoto.from("auditores_catalogo").select().decodeList<AuditorCatalogoRemoto>().map { it.aLocal() }
+            val remotos = remoto.from("auditores_catalogo").select().decodeList<AuditorCatalogoRemoto>().map { it.aLocal() }.sortedBy { it.nombre.lowercase() }
             remotos.forEach { local.insertar(it) }
             remotos
         } catch (e: Exception) {
             Log.w(TAG, "Fallback a cache local: Supabase no respondió (getAll)", e)
-            local.getAll()
+            local.getAll().sortedBy { it.nombre.lowercase() }
         }
     }
 

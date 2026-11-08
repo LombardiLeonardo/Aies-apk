@@ -94,7 +94,15 @@ fun ChecklistPaso(
             vehiculo = v
             if (c == null || v == null) return@withContext
 
-            val plantillas = dao.getPlantillas()
+            // En modo sesión (feature-sesion) esta pantalla se abre directo, sin pasar por
+            // ListaClientesPaso (que es quien siembra la plantilla) -- en un dispositivo donde
+            // nunca se abrió el módulo en modo standalone no había ninguna plantilla y el
+            // checklist quedaba vacío ("No hay ninguna plantilla de checklist cargada").
+            var plantillas = dao.getPlantillas()
+            if (plantillas.isEmpty()) {
+                dao.seedPlantillaGlpSiNoExiste()
+                plantillas = dao.getPlantillas()
+            }
             var informeActual = informeIdExistente?.let { dao.getInforme(it) }
             val resultadosPorItemId = informeIdExistente
                 ?.let { dao.getResultadosDeInforme(it).associateBy { r -> r.itemChecklistId } }

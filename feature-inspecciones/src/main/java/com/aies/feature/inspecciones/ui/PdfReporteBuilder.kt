@@ -21,7 +21,8 @@ object PdfReporteBuilder {
         // que Certificados/Calibrado), para que el técnico pueda identificar de un vistazo si ya
         // revisó "la hoja de reporte número 8" de una unidad sin abrir el PDF. Null = sin
         // número asignado (nunca debería pasar en un flujo normal, pero no rompe el PDF).
-        numeroReporte: Long? = null
+        numeroReporte: Long? = null,
+        fechaControl: Long = System.currentTimeMillis()
     ): PdfDocument {
         val pdfDocument = PdfDocument()
         var pageNumber = 1
@@ -102,6 +103,23 @@ object PdfReporteBuilder {
                 yPos += 10f
             }
         }
+
+        // Bloque final de fecha y firmas (auditor / chofer), compartido por todas las inspecciones.
+        yPos += 30f
+        if (yPos > 690f) nuevaPagina()
+        paint.color = Color.BLACK
+        paint.isFakeBoldText = true
+        paint.textSize = 10f
+        canvas.drawText("Fecha del control: ${java.text.SimpleDateFormat("dd/MM/yyyy", java.util.Locale.getDefault()).format(java.util.Date(fechaControl))}", 40f, yPos, paint)
+        paint.isFakeBoldText = false
+        val yLinea = yPos + 70f
+        canvas.drawLine(40f, yLinea, 260f, yLinea, paint)
+        canvas.drawLine(330f, yLinea, 550f, yLinea, paint)
+        paint.textSize = 9f
+        paint.textAlign = Paint.Align.CENTER
+        canvas.drawText("Firma y aclaración del Auditor", 150f, yLinea + 14f, paint)
+        canvas.drawText("Firma y aclaración del Chofer", 440f, yLinea + 14f, paint)
+        paint.textAlign = Paint.Align.LEFT
 
         pdfDocument.finishPage(page)
         return pdfDocument

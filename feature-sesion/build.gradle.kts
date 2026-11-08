@@ -28,6 +28,7 @@ dependencies {
     implementation(project(":feature-calibrado"))
     implementation(project(":feature-repuestos"))
     implementation(project(":feature-planilla-tapas"))
+    implementation(project(":feature-planilla-atmosfera"))
     implementation(project(":feature-controles-visuales"))
     implementation(project(":feature-certificados"))
     implementation(project(":feature-informes"))

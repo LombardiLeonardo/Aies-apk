@@ -218,7 +218,14 @@ class SesionServicioDao internal constructor(
 
     /** Sin try/catch a propósito -- ver doc de la clase. */
     suspend fun eliminarItem(itemId: Long) {
-        remoto.from("sesion_servicio_items").delete { filter { eq("id", itemId) } }
+        // select() hace que Postgrest devuelva las filas borradas: con RLS sin policy de DELETE el
+        // request responde 200 pero borra 0 filas -- sin este chequeo el "Quitar" parecía andar
+        // (se borraba solo el espejo local) y el item reaparecía al recargar desde Supabase.
+        val borradas = remoto.from("sesion_servicio_items").delete {
+            select(Columns.raw("id"))
+            filter { eq("id", itemId) }
+        }.decodeList<IdRemoto>()
+        check(borradas.isNotEmpty()) { "Supabase no borró el item $itemId (¿falta la policy de DELETE?)" }
         local.eliminarItem(itemId)
     }
 
