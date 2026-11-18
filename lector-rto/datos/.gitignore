@@ -1,0 +1,3 @@
+# Las RTO/VTV reales tienen datos personales (titular, CUIT, patente): no se suben al repo.
+*
+!.gitignore
